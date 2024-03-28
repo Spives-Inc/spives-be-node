@@ -1,6 +1,6 @@
-# SPIVES
+# About SPIVES
 
-SPIVES is a mobile App that helps futebol increase their visibility by allowing them to create a profile where they can create cards, upload videos that can then be seen
+SPIVES is a mobile App that helps football players increase their visibility by allowing them to create a profile where they can create cards, upload videos that can then be seen
 by Agents and scouts around the world thus increasing their chances of being part of professional clubs like Barcelona or MAN City.
 
 ## Table of Contents (Optional)
