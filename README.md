@@ -148,6 +148,18 @@ In your `settings.py`, ensure that the `DEBUG` setting is set to `False` in prod
 10. *build:* Changes affecting the build system or external dependencies.
 11. *revert:* Undoing previous changes.
 
+## Streamlining Workflow with Git Flow Branch Naming Conventions
+
+*Git Flow* is a branching strategy that helps manage and structure various phases of a project.
+
+1. *master:* The source of truth for production-ready states.
+2. *develop:* The integration branch for development work.
+3. *feature/:* For developing new features, e.g., feature/add-login.
+4. *release/:* Preparing a new production release, e.g., release/1.2.0.
+5. *hotfix/:* Quick fixes for the production version, e.g., hotfix/critical-login-bug.
+6. *support/:* Long-term support for older versions, e.g., support/1.x.
+7. *bugfix/:* For specific bug fixes (optional), e.g., bugfix/login-error.
+
 ## Contribution
 
 Please refer to the CONTRIBUTING.md for guidance.
