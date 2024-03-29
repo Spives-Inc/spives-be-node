@@ -108,6 +108,7 @@ In your `settings.py`, ensure that the `DEBUG` setting is set to `False` in prod
 4. SECRET_KEY:
     * Keep the `SECRET_KEY` confidential. It’s used for cryptographic signing and should never be shared or exposed.
     * Generate a strong, random `SECRET_KEY` during project setup.
+    * To Generate a New `SECRET_KEY` in Django, follow the instructions provided on this website: (<https://www.makeuseof.com/django-secret-key-generate-new/>)
 
 5. Authorization and Authentication:
     * Implement robust authorization and authentication mechanisms. Use Django’s built-in features like user authentication, permissions, and groups.
@@ -132,6 +133,20 @@ In your `settings.py`, ensure that the `DEBUG` setting is set to `False` in prod
 10. Database Security:
     * Secure your database connections. Use strong passwords and restrict access.
     * Avoid using default database credentials.
+
+## Git commit message types
+
+1. *feat:* Introducing new features or significant improvements.
+2. *fix:* Bug fixes that resolve issues in your code.
+3. *docs:* Updates or additions to documentation.
+4. *style:* Cosmetic changes that don't affect code functionality (like formatting).
+5. *refactor:* Code changes that neither fix a bug nor add a feature but improve structure.
+6. *test:* Everything about testing - adding or fixing tests.
+7. *chore:* Routine tasks or updates to the build process.
+8. *perf:* Enhancements that improve performance.
+9. *ci:* Modifications related to CI/CD processes.
+10. *build:* Changes affecting the build system or external dependencies.
+11. *revert:* Undoing previous changes.
 
 ## Contribution
 
