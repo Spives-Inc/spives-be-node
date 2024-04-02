@@ -15,6 +15,8 @@ by Agents and scouts around the world thus increasing their chances of being par
 * [Commands used-Windows](#commands-used-windows)
 * [Libraries](#libraries)
 * [Best Practices](#best-practices)
+* [Git commit message types](#git-commit-message-types)
+* [Streamlining Workflow with Git Flow Branch Naming Conventions](#streamlining-workflow-with-git-flow-branch-naming-conventions)
 * [Contribution](#contribution)
 * [Additional Information (Optional)](#additional-information)
 
@@ -71,6 +73,8 @@ Always refer to the [Django Installation](https://docs.djangoproject.com/en/5.0/
 * `django-admin startproject gospives .`
 * `python3 manage.py migrate`
 * `python3 manage.py runserver`
+* `python3 manage.py createsuperuser`
+* `django-admin startproject spives-app .`
 * Add these dependencies to your requirements.txt file:`pip freeze > requirements.txt`
 * Protect SECRET_KEYS - `pip install python-dotenv`
 
@@ -84,6 +88,8 @@ Always refer to the [Django Installation](https://docs.djangoproject.com/en/5.0/
 * `django-admin startproject gospives .`
 * `python manage.py migrate`
 * `python manage.py runserver`
+* `python manage.py createsuperuser`
+* `django-admin.exe startproject spives-app .`
 * Add these dependencies to your requirements.txt file:`pip freeze > requirements.txt`
 * Protect SECRET_KEYS - `pip install python-dotenv`
 
