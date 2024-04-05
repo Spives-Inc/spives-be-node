@@ -74,7 +74,7 @@ Always refer to the [Django Installation](https://docs.djangoproject.com/en/5.0/
 * `python3 manage.py migrate`
 * `python3 manage.py runserver`
 * `python3 manage.py createsuperuser`
-* `django-admin startproject spives-app .`
+* `python3 manage.py startapp spives_api`
 * Add these dependencies to your requirements.txt file:`pip freeze > requirements.txt`
 * Protect SECRET_KEYS - `pip install python-dotenv`
 
@@ -89,7 +89,7 @@ Always refer to the [Django Installation](https://docs.djangoproject.com/en/5.0/
 * `python manage.py migrate`
 * `python manage.py runserver`
 * `python manage.py createsuperuser`
-* `django-admin.exe startproject spives-app .`
+* `python manage.py startapp spives_api`
 * Add these dependencies to your requirements.txt file:`pip freeze > requirements.txt`
 * Protect SECRET_KEYS - `pip install python-dotenv`
 
