@@ -41,6 +41,6 @@ Promise.all(promises)
     process.exit(1);
   })
   .finally(async () => {
-    console.log("Gomonji DB Seeded successfully.");
+    console.log("Spives DB Seeded successfully.");
     await prisma.$disconnect();
   });
