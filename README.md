@@ -3,23 +3,6 @@
 SPIVES is a mobile App that helps football players increase their exposure by allowing them to create a profile where they can create cards, upload videos that can then be seen
 by Agents and scouts around the world thus increasing their chances of being part of professional clubs like Barcelona or MAN City.
 
-## Table of Contents
-
-* [Installation](#installation)
-* [Usage](#usage)
-* [Contributing (Optional)](#contributing)
-* [Installation-MacOs](#installation-macos)
-* [Installation-Windows](#installation-windows)
-* [Continue](#continue)
-* [Commands used-OS X or Linux](#commands-used-os-x-or-linux)
-* [Commands used-Windows](#commands-used-windows)
-* [Libraries](#libraries)
-* [Best Practices](#best-practices)
-* [Git commit message types](#git-commit-message-types)
-* [Streamlining Workflow with Git Flow Branch Naming Conventions](#streamlining-workflow-with-git-flow-branch-naming-conventions)
-* [Contribution](#contribution)
-* [Additional Information (Optional)](#additional-information)
-
 ## Installation
 
 Here are the steps to install and run the project:
@@ -29,147 +12,120 @@ Here are the steps to install and run the project:
 3. Install dependencies ...
 4. Run the project ...
 
-## Usage
+## Useful Links
+- [API DOCS](https://gomonji-be.onrender.com/swagger)
+- [Jwt Auth with NestJs](https://www.sipios.com/blog-posts/implementing-authentication-in-nestjs-using-passport-and-jwt)
 
-Here's how to use the project functionalities:
 
-* ... (instructions with code snippets or screenshots)
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
 
-## Contributing
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-We welcome contributions to this project! Here's how you can get involved:
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-* Below are contribution guidelines to follow:
+## Description
 
-## Installation-MacOS
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-Always refer to the [Django Installation](https://docs.djangoproject.com/en/5.0/intro/tutorial01/)
+## Installation
 
-1. Clone this repo and navigate to gospives folder
-2. Set Up Virtual Environment: `python3 -m venv venv`
-3. Activate Virtual Environment: `source venv/bin/activate`
+```bash
+$ yarn install
+```
 
-## Installation-Windows
+## Running the app
 
-1. Clone this repo and navigate to gospives folder
-2. Set Up Virtual Environment: `python -m venv venv`
-3. Activate Virtual Environment: `source venv\Scripts\activate.bat`
+```bash
+# development
+$ yarn run start
 
-## Continue
+# watch mode
+$ yarn run start:dev
 
-1. Install all dependecies: `pip install -r requirements.txt`
-2. Create `.env` file in the root folder.
-3. Perform Initial Database Migrations: `python3 manage.py migrate`
-4. (Optional) Create Superuser: `python3 manage.py createsuperuser`
-5. Run Development Server: `python3 manage.py runserver`
+# production mode
+$ yarn run start:prod
+```
 
-## Commands used-OS X or Linux
+## Test
 
-* `mkdir spives`
-* `cd spives`
-* `python3 -m venv venv`
-* `source venv/bin/activate`
-* `python -m pip install --upgrade pip`
-* `django-admin startproject gospives .`
-* `python3 manage.py migrate`
-* `python3 manage.py runserver`
-* `python3 manage.py createsuperuser`
-* `python3 manage.py startapp [AppName]`
-* Add these dependencies to your requirements.txt file:`pip freeze > requirements.txt`
-* Protect SECRET_KEYS - `pip install python-dotenv`
+```bash
+# unit tests
+$ yarn run test
 
-## Commands used-Windows
+# e2e tests
+$ yarn run test:e2e
 
-* `mkdir spives`
-* `cd spives`
-* `python -m venv venv`
-* `source venv\Scripts\activate.bat`
-* `django-admin startproject gospives .`
-* `python manage.py migrate`
-* `python manage.py runserver`
-* `python manage.py createsuperuser`
-* `python manage.py startapp [AppName]`
-* Add these dependencies to your requirements.txt file:`pip freeze > requirements.txt`
-* Protect SECRET_KEYS - `pip install python-dotenv`
+# test coverage
+$ yarn run test:cov
+```
 
-## Libraries
+## Support
 
-1. [Django REST framework](https://www.django-rest-framework.org/)
-2. [django-cors-headers](https://pypi.org/project/django-cors-headers/)
-3. [django-rest-auth](https://django-rest-auth.readthedocs.io/en/latest/installation.html)
-4. [django-allauth](https://docs.allauth.org/en/latest/installation/quickstart.html)
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Best Practices
+## Stay in touch
 
-1. Keep Django Updated: Always stay on the latest version of Django. Regularly update your project to benefit from security fixes and improvements. Major releases occur approximately every 9 months, with minor releases addressing security and bugs almost monthly (<https://learndjango.com/tutorials/django-best-practices-security>)
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-2. Environment Variables:
-    * Use environment variables to manage settings between local development and production environments. These variables allow you to switch configurations seamlessly.
-    * Consider using packages like `environs` to handle environment variables effectively.
+## License
 
-3. DEBUG Mode:
-In your `settings.py`, ensure that the `DEBUG` setting is set to `False` in production. Debug mode provides detailed error pages, which can be a security risk if exposed publicly. Read more on: (<https://learndjango.com/tutorials/django-best-practices-security>)
+Nest is [MIT licensed](LICENSE).
 
-4. SECRET_KEY:
-    * Keep the `SECRET_KEY` confidential. It’s used for cryptographic signing and should never be shared or exposed.
-    * Generate a strong, random `SECRET_KEY` during project setup.
-    * To Generate a New `SECRET_KEY` in Django, follow the instructions provided on this website: (<https://www.makeuseof.com/django-secret-key-generate-new/>)
+## Project Description.
+- Gomongi is a trip planner app
 
-5. Authorization and Authentication:
-    * Implement robust authorization and authentication mechanisms. Use Django’s built-in features like user authentication, permissions, and groups.
-    * Avoid custom authentication solutions unless necessary.
+# Project Description
+- This is the frontend web progressive app develop by Team Djara as caption-2 project at [MEST, 2024 Cohort](https://meltwater.org/)
 
-6. Secure Configurations:
-    * Properly configure the application settings. Guard against common vulnerabilities like cross-site scripting (XSS) and cross-site request forgery (CSRF).
-    * Use HTTPS to encrypt data in transit.
+## Functionalies
+- This web is a market place for people that are into group travels/trips. We aggregate them and give our users wide range of choices.
 
-7. Rate Limiting and Brute-Force Protection:
-    * Implement rate limiting to prevent brute-force attacks.
-    * Consider using packages like `django_ratelimit` or `django-axes`.
+## Technologies
+- React
+- Tailwing for styling
 
-8. Third-Party Dependencies:
-    * Regularly review and update third-party packages. Vulnerabilities in dependencies can impact the application’s security.
-    * Use tools like `pip-tools` to manage dependencies efficiently.
+## Import links
+- [Dev Live Demo](https://djaro-trips-web.vercel.app/)
+- [Repository Link](https://github.com/djaro-mest-capston-2/djaro-trips-web)
+- [Project Requirement Document](https://docs.google.com/document/d/1CbCCAsBdMFxzLllbTiinRJIy2t9f9eT5/edit)
+- [Figma Design](https://www.figma.com/file/xStlPvBP0jp1BScE4hGser/Untitled?type=design&node-id=1-3&mode=design&t=S7RsLYOaqB24bG8p-0)
+- [Figjam Flow](https://www.figma.com/file/ZzQyh9ciKxSGcy45DUPKp9/Flow-Charts?type=whiteboard&node-id=0-1&t=7q6AyDIOvEnPlZzE-0)
+- [High Fidelity Prottotype](https://app.flutterflow.io/project/monji-lsn3z7)
+- [Tailwind Official Docs](https://v2.tailwindcss.com/docs/)
+- [React Official Docs](https://react.dev/)
+## How to contribute to this repository
 
-9. Security Audits:
-    * Perform automated security audits regularly. Tools like `Lynis` can help identify potential issues.
-    * Monitor logs and track suspicious activity.
-
-10. Database Security:
-    * Secure your database connections. Use strong passwords and restrict access.
-    * Avoid using default database credentials.
-
-## Git commit message types
-
-1. *feat:* Introducing new features or significant improvements.
-2. *fix:* Bug fixes that resolve issues in your code.
-3. *docs:* Updates or additions to documentation.
-4. *style:* Cosmetic changes that don't affect code functionality (like formatting).
-5. *refactor:* Code changes that neither fix a bug nor add a feature but improve structure.
-6. *test:* Everything about testing - adding or fixing tests.
-7. *chore:* Routine tasks or updates to the build process.
-8. *perf:* Enhancements that improve performance.
-9. *ci:* Modifications related to CI/CD processes.
-10. *build:* Changes affecting the build system or external dependencies.
-11. *revert:* Undoing previous changes.
-
-## Streamlining Workflow with Git Flow Branch Naming Conventions
-
-*Git Flow* is a branching strategy that helps manage and structure various phases of a project.
-
-1. *master:* The source of truth for production-ready states.
-2. *develop:* The integration branch for development work.
-3. *feature/:* For developing new features, e.g., feature/add-login.
-4. *release/:* Preparing a new production release, e.g., release/1.2.0.
-5. *hotfix/:* Quick fixes for the production version, e.g., hotfix/critical-login-bug.
-6. *support/:* Long-term support for older versions, e.g., support/1.x.
-7. *bugfix/:* For specific bug fixes (optional), e.g., bugfix/login-error.
-
-## Contribution
-
-Please refer to the CONTRIBUTING.md for guidance.
-
-## Additional Information
-
-* website: <https://gospives.com>
-* E-mail: <contributions@gospives.com>
+1. Run `git clone https://github.com/djaro-mest-capston-2/djaro-trips-web` to clone the repository 
+2. Run `yarn` to install dependencies
+3. Run `yarn start` to start app or `yarn dev` to start development server'
+4. Run `git checkout -b <branch name>` to swith into a new branch
+5. create or pick an existing issue here [Issue](https://github.com/djaro-mest-capston-2/djaro-trips-web/issues)
+6. Make changes to your branch
+7. Run `git status` to view your stagging status. Unstagged files appear with color `red`
+8. Run `git add .` to stage all your changes or `git add <directory or reference>` to stage specific files
+9. Run `git status` to confirm all stagged files. Stagged files appear with color `green`
+10. Run `git commit -m '<issue-no: commit message>'` to describe your changes
+11. Run `git pull origin develop` to update your local branch to remote branch. 
+12. Resolve `conflicts` if with if any
+13. Run `git push origin <branch name>` to push to your branch
+14. Visit [Main Repo](https://github.com/djaro-mest-capston-2/djaro-trips-web) and make a pull request.
