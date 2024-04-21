@@ -10,6 +10,12 @@ import { UserController } from "./user/user.controller";
 import { APP_GUARD } from "@nestjs/core";
 import { JwtGuard } from "./auth/guards/jwt.guard";
 import { BaseModule } from "./base/base-module";
+import { FootballClubModule } from "./football-club/football-club.module";
+import { PlayerCardModule } from "./player-card/card.module";
+import { FootballClubController } from "./football-club/football-club.controller";
+import { PlayerCardController } from "./player-card/card.controller";
+import { ScoutWatchListModule } from "./watchlist/watchlist.module";
+import { ScoutWatchListController } from "./watchlist/watchlist.controller";
 
 @Global()
 @Module({
@@ -18,10 +24,16 @@ import { BaseModule } from "./base/base-module";
     AuthModule,
     BaseModule,
     UserModule,
+    FootballClubModule,
+    PlayerCardModule,
+    ScoutWatchListModule,
   ],
   controllers: [
     AppController,
     UserController,
+    FootballClubController,
+    PlayerCardController,
+    ScoutWatchListController,
   ],
   providers: [
     AppService,
@@ -32,10 +44,13 @@ import { BaseModule } from "./base/base-module";
     AppUtilities,
   ],
   exports: [
-    AppUtilities,
     AuthModule,
+    AppUtilities,
     UserModule,
     BaseModule,
+    FootballClubModule,
+    PlayerCardModule,
+    ScoutWatchListModule,
   ],
 })
 export class AppModule {}

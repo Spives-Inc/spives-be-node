@@ -37,15 +37,4 @@ export class AuthController {
   async register(@Body() dto: RegisterUserDto, @Req() req: User): Promise<any> {
     return this.authService.register(dto, req);
   }
-
-  @Get("profile")
-  async getProfile(@Req() req: User): Promise<any> {
-    const profile = await this.prisma.user.findFirstOrThrow({
-      where: { id: req.id },
-    });
-    if (!profile) {
-      throw new UnauthorizedException("User not found");
-    }
-    return profile;
-  }
 }
