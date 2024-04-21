@@ -50,28 +50,29 @@ enum InvoiceStatusEnum {
 }
 
 model Nationality {
-  id            String   @id @default(uuid()) @db.Uuid
-  name          String   @unique() @db.VarChar(50)
-  iso2          String   @unique() @db.Char(2)
-  iso3          String   @unique() @db.Char(3)
-  isoNumeric    String   @db.VarChar(3)
-  phoneCode     String   @db.VarChar(50)
-  continent     String?  @db.VarChar(20)
-  capital       String   @db.VarChar(50)
-  timeZone      String   @db.VarChar(50)
-  currency      String   @db.VarChar(20)
-  symbol        String?  @db.VarChar(5)
-  wholePart     String?  @db.VarChar(20)
-  fractionPart  String?  @db.VarChar(20)
-  languageCodes String?  @db.VarChar(100)
-  perUserPrice  Float    @default(0.00) @db.DoublePrecision()
-  status        Boolean  @default(false) @db.Boolean
-  createdAt     DateTime @default(now()) @db.Timestamptz(6)
-  createdBy     String?  @db.Uuid
-  updatedAt     DateTime @default(now()) @updatedAt @db.Timestamptz(6)
-  updatedBy     String?  @db.Uuid
+  id            String         @id @default(uuid()) @db.Uuid
+  name          String         @unique() @db.VarChar(50)
+  iso2          String         @unique() @db.Char(2)
+  iso3          String         @unique() @db.Char(3)
+  isoNumeric    String         @db.VarChar(3)
+  phoneCode     String         @db.VarChar(50)
+  continent     String?        @db.VarChar(20)
+  capital       String         @db.VarChar(50)
+  timeZone      String         @db.VarChar(50)
+  currency      String         @db.VarChar(20)
+  symbol        String?        @db.VarChar(5)
+  wholePart     String?        @db.VarChar(20)
+  fractionPart  String?        @db.VarChar(20)
+  languageCodes String?        @db.VarChar(100)
+  perUserPrice  Float          @default(0.00) @db.DoublePrecision()
+  status        Boolean        @default(false) @db.Boolean
+  createdAt     DateTime       @default(now()) @db.Timestamptz(6)
+  createdBy     String?        @db.Uuid
+  updatedAt     DateTime       @default(now()) @updatedAt @db.Timestamptz(6)
+  updatedBy     String?        @db.Uuid
   states        State[]
   users         User[]
+  footballClub  FootballClub[]
 
   @@map("nationality")
 }
@@ -93,7 +94,7 @@ model State {
 
 model Address {
   id        String   @id @default(uuid()) @db.Uuid
-  profileId String   @db.Uuid
+  userId    String   @db.Uuid
   name      String   @db.VarChar(50)
   street    String   @db.VarChar(150)
   city      String   @db.VarChar(50)
@@ -104,7 +105,7 @@ model Address {
   createdBy String?  @db.Uuid
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
   updatedBy String?  @db.Uuid
-  user      Profile  @relation(fields: [profileId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("address")
 }
@@ -112,7 +113,7 @@ model Address {
 model User {
   id                String           @id @default(uuid()) @db.Uuid
   roleId            String?          @db.Uuid
-  nationalityId     String          @db.Uuid
+  nationalityId     String           @db.Uuid
   name              String           @db.VarChar(100)
   email             String           @unique @db.VarChar(100)
   age               Int?             @db.SmallInt
@@ -128,18 +129,24 @@ model User {
   passwordLockedAt  DateTime?        @db.Timestamptz(6)
   passwordHistory   Json?            @db.JsonB
   passwordAttempt   Int?             @db.SmallInt
-  status            Boolean          @default(false) @db.Boolean
+  bio               String?          @db.VarChar(255)
+  phoneNo           String?          @db.VarChar(15)
+  website           String?          @db.VarChar(100)
+  status            Boolean          @default(true) @db.Boolean
   createdAt         DateTime         @default(now()) @db.Timestamptz(6)
   createdBy         String?          @db.Uuid
   updatedAt         DateTime         @default(now()) @updatedAt @db.Timestamptz(6)
   updatedBy         String?          @db.Uuid
-  nationality       Nationality     @relation(fields: [nationalityId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  nationality       Nationality      @relation(fields: [nationalityId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   role              Role?            @relation(fields: [roleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  profile           Profile?
   billing           Billing[]
   invoice           Invoice[]
   scoutWatchList    ScoutWatchList[]
   playerPosition    PlayerPosition[]
+  address           Address[]
+  socialMedia       SocialMedia[]
+  gallery           Gallery[]
+  playerCard        PlayerCard[]
 
   @@map("user")
 }
@@ -176,53 +183,23 @@ model RoleMenuPermission {
   @@map("role_menu_permission")
 }
 
-model Profile {
-  id              String        @id @default(uuid()) @db.Uuid
-  userId          String        @unique @db.Uuid
-  nationalityId   String?       @db.Uuid
-  age             Int?          @db.SmallInt
-  phoneNo         String?       @db.VarChar(15)
-  firstName       String        @db.VarChar(100)
-  lastName        String        @db.VarChar(100)
-  brandName       String?       @db.VarChar(100)
-  weight          String?       @db.VarChar(100)
-  height          String?       @db.VarChar(100)
-  powerFoot       String?       @db.VarChar(100)
-  appearances     String?       @db.VarChar(100)
-  avatar          String?       @db.VarChar(100)
-  backgroundImage String?       @db.VarChar(100)
-  website         String?       @db.VarChar(100)
-  description     String?       @db.VarChar(255)
-  status          Boolean       @default(true) @db.Boolean
-  createdAt       DateTime      @default(now()) @db.Timestamptz(6)
-  createdBy       String?       @db.Uuid
-  updatedAt       DateTime      @default(now()) @updatedAt @db.Timestamptz(6)
-  updatedBy       String?       @db.Uuid
-  user            User          @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  address         Address[]
-  socialMedia     SocialMedia[]
-  gallery         Gallery[]
-  playerCard      PlayerCard[]
-
-  @@map("user_profile")
-}
-
 model PlayerCard {
   id        String   @id @default(uuid()) @db.Uuid
-  profileId String   @db.Uuid
+  userId    String   @db.Uuid
   name      String   @db.VarChar(50)
-  value     String   @db.VarChar(50)
+  value     String?  @db.VarChar(50)
+  code      String?  @db.VarChar(10)
   status    Boolean  @default(true) @db.Boolean
   createdAt DateTime @default(now()) @db.Timestamptz(6)
   createdBy String?  @db.Uuid
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
   updatedBy String?  @db.Uuid
-  profile   Profile  @relation(fields: [profileId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model SocialMedia {
   id        String   @id @default(uuid()) @db.Uuid
-  profileId String   @unique @db.Uuid
+  userId    String   @unique @db.Uuid
   name      String   @db.VarChar(50)
   baseUrl   String   @db.VarChar(100)
   username  String   @db.VarChar(50)
@@ -231,7 +208,7 @@ model SocialMedia {
   createdBy String?  @db.Uuid
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
   updatedBy String?  @db.Uuid
-  user      Profile  @relation(fields: [profileId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("social_media")
 }
@@ -254,14 +231,14 @@ model PlayerPosition {
 
 model Gallery {
   id        String   @id @default(uuid()) @db.Uuid
-  profileId String   @db.Uuid
+  userId    String   @db.Uuid
   url       String   @unique @db.VarChar(100)
   status    Boolean  @default(true) @db.Boolean
   createdAt DateTime @default(now()) @db.Timestamptz(6)
   createdBy String?  @db.Uuid
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
   updatedBy String?  @db.Uuid
-  profile   Profile  @relation(fields: [profileId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("trip_images")
 }
@@ -269,6 +246,7 @@ model Gallery {
 model ScoutWatchList {
   id        String   @id @default(uuid()) @db.Uuid
   talentId  String   @db.Uuid
+  intention String?  @db.Uuid
   status    Boolean  @default(true) @db.Boolean
   createdAt DateTime @default(now()) @db.Timestamptz(6)
   createdBy String?  @db.Uuid
@@ -294,18 +272,20 @@ model Inquiries {
 }
 
 model FootballClub {
-  id        String   @id @default(uuid()) @db.Uuid
-  name      String   @unique @db.VarChar(100)
-  logo      String?  @db.VarChar(100)
-  country   String   @db.VarChar(100)
-  city      String   @db.VarChar(100)
-  stadium   String   @db.VarChar(100)
-  founded   String   @db.VarChar(50)
-  status    Boolean  @default(true) @db.Boolean
-  createdAt DateTime @default(now()) @db.Timestamptz(6)
-  createdBy String?  @db.Uuid
-  updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
-  updatedBy String?  @db.Uuid
+  id          String      @id @default(uuid()) @db.Uuid
+  countryId   String      @db.Uuid
+  name        String      @unique @db.VarChar(100)
+  logo        String?     @db.VarChar(100)
+  city        String?     @db.VarChar(100)
+  stadium     String?     @db.VarChar(100)
+  founded     String?     @db.VarChar(50)
+  description String?     @db.VarChar(255)
+  status      Boolean     @default(true) @db.Boolean
+  createdAt   DateTime    @default(now()) @db.Timestamptz(6)
+  createdBy   String?     @db.Uuid
+  updatedAt   DateTime    @default(now()) @updatedAt @db.Timestamptz(6)
+  updatedBy   String?     @db.Uuid
+  country     Nationality @relation(fields: [countryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("football_club")
 }

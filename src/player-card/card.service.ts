@@ -7,21 +7,22 @@ import {
 import { CrudService } from "../common/database/crud.service";
 import moment from "moment";
 import { AppUtilities } from "../app.utilities";
+import { PlayerCardMapType } from "./card-mapetype";
 import {
-  GetUsersFilterDto,
-  MapUserOrderByToValue,
-} from "./dto/get-user-filter.dto";
-import { UserMapType } from "./user.mapetype";
-import { UpdateUserDto } from "./dto/update-user.dto";
+  GetPlayerCardFilterDto,
+  MapPlayerCardOrderByToValue,
+} from "./dto/get-card-filter.dto";
+import { CreatePlayerCardDto } from "./dto/create-card.dto";
+import { UpdatePlayerCardDto } from "./dto/update-card.dto";
 
 @Injectable()
-export class UserService extends CrudService<Prisma.UserDelegate, UserMapType> {
-  constructor(private prismaClient: PrismaClient) {
-    super(prismaClient.user);
+export class PlayerCardService extends CrudService<Prisma.PlayerCardDelegate, PlayerCardMapType> {
+  constructor(private prisma: PrismaClient) {
+    super(prisma.playerCard);
   }
 
   async getAll(
-    { page, size, orderBy, cursor, direction, ...filters }: GetUsersFilterDto,
+    { page, size, orderBy, cursor, direction, ...filters }: GetPlayerCardFilterDto,
     req: User,
   ) {
     const parseSplittedTermsQuery = (term: string) => {
@@ -87,16 +88,12 @@ export class UserService extends CrudService<Prisma.UserDelegate, UserMapType> {
       },
     ]);
 
-    const args: Prisma.UserFindManyArgs = {
+    const args: Prisma.PlayerCardFindManyArgs = {
       where: {
         ...parsedQueryFilters,
       },
       include: {
-        nationality: true,
-        playerPosition: true,
-        scoutWatchList: true,
-        billing: true,
-        role: true,
+        user: true,
       },
     };
 
@@ -108,27 +105,37 @@ export class UserService extends CrudService<Prisma.UserDelegate, UserMapType> {
       orderBy:
         orderBy &&
         AppUtilities.unflatten({
-          [MapUserOrderByToValue[orderBy]]: direction,
+          [MapPlayerCardOrderByToValue[orderBy]]: direction,
         }),
     });
   }
 
-  async getOne(id: string, req: User) {
-    const dto: Prisma.UserFindFirstArgs = {
-      where: { id },
-      include: {
-        nationality: true,
-        playerPosition: true,
-        scoutWatchList: true,
-        billing: true,
-        role: true,
+  async createPlayerCard(
+    {
+      userId,
+      name,
+      value,
+      code,
+    }: CreatePlayerCardDto,
+    Req: User,
+  ) {
+    return this.prisma.playerCard.create({
+      data: {
+        user: {
+          connect: {
+            id: userId,
+          },
+        },
+        name,
+        ...(value && { value }),
+        ...(code && { code }),
+        createdAt: new Date(),
       },
-    };
-    return await this.findFirstOrThrow(dto);
+    });
   }
 
-  async updateUser(authUser: User, id: string, dto: UpdateUserDto) {
-    const args: Prisma.UserUpdateArgs = {
+  async updatePlayerCard(authUser: User, id: string, dto: UpdatePlayerCardDto) {
+    const args: Prisma.PlayerCardUpdateArgs = {
       where: { id },
       data: {
         ...dto,
@@ -138,14 +145,13 @@ export class UserService extends CrudService<Prisma.UserDelegate, UserMapType> {
     return this.update(args);
   }
 
-  async archiveUser(id: string) {
-    const user = await this.findFirstOrThrow({
+  async cancelPlayerCard(id: string) {
+    const card = await this.findFirst({
       where: { id },
     });
-    if (!user) {
-      throw new NotFoundException("User not found!");
+    if (!card) {
+      throw new NotFoundException("Player Card not found!");
     }
-
     return this.update({
       where: { id },
       data: {
