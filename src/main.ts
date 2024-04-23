@@ -48,9 +48,10 @@ async function bootstrap() {
     /^(https:\/\/([^\.]*\.)?ngrok\.io)$/i,
     /^(https:\/\/([^\.]*\.)?amplifyapp\.com)$/i,
     "http://localhost:3000",
-    "https://gospives.netlify.app/",
+    "https://gospives.netlify.app",
+    "Please also add gospives.com"
   ];
-  const allowedOriginsProd = ["https://gospives.netlify.app/"];
+  const allowedOriginsProd = ["https://gospives.netlify.app"];
   const origins =
     environment === "production" ? allowedOriginsProd : allowedOrigins;
 

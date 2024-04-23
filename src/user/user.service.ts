@@ -92,6 +92,9 @@ export class UserService extends CrudService<Prisma.UserDelegate, UserMapType> {
         ...parsedQueryFilters,
       },
       include: {
+        address: true,
+        playerCard: true,
+        gallery: true,
         nationality: true,
         playerPosition: true,
         scoutWatchList: true,
