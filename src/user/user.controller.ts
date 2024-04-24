@@ -36,7 +36,6 @@ export class UserController {
     return this.userService.getOne(id, req);
   }
 
-  @Public()
   @Patch("/:id/update")
   async updateUser(
     @Req() authUser: User,
@@ -46,7 +45,6 @@ export class UserController {
     return this.userService.updateUser(authUser, id, dto);
   }
 
-  @Public()
   @ApiResponseMeta({ message: "User archived successfully!" })
   @Delete("/:id/archive")
   async deleteSample(@Param("id", ParseUUIDPipe) id: string) {
